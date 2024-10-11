@@ -40,10 +40,10 @@ Frontend:
 
 React.js (for web interface)
 D3.js (for data visualization)
+
 Database:
 
 MongoDB/PostgreSQL (to store scraped odds)
-Other Tools:
 
+Other Tools:
 BeautifulSoup/Selenium (for web scraping)
-Docker (for containerization)

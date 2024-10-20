@@ -4,11 +4,7 @@ This project aims to create a real-time web dashboard that compares live soccer 
 
 Supported Bookmakers:
 DraftKings
-Bet365
 FanDuel Sportsbook
-BetMGM
-Fanatics
-PrizePicks
 Pinnacle
 ## Project Phases
 1. Web Scraping (1-2 weeks)

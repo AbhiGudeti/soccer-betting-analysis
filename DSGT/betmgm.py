@@ -3,8 +3,6 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 import time
 
@@ -58,14 +56,23 @@ for row in game_rows:
             draw_odds_value = american_to_decimal(float(odds[1].text.replace('+', '')))
             away_odds = american_to_decimal(float(odds[2].text.replace('+', '')))
             
+            # Calculate implied probabilities
+            implied_home_prob = (1 / home_odds) * 100
+            implied_draw_prob = (1 / draw_odds_value) * 100
+            implied_away_prob = (1 / away_odds) * 100
+            
+            # Total implied probability for normalization
+            total_implied_prob = implied_home_prob + implied_draw_prob + implied_away_prob
+            
+            # Normalize probabilities to sum to 100%
+            home_win_prob.append(round((implied_home_prob / total_implied_prob) * 100, 2))
+            draw_prob.append(round((implied_draw_prob / total_implied_prob) * 100, 2))
+            away_win_prob.append(round((implied_away_prob / total_implied_prob) * 100, 2))
+            
+            # Store decimal odds
             home_win_odds.append(home_odds)
             draw_odds.append(draw_odds_value)
             away_win_odds.append(away_odds)
-            
-            # Calculate implied probabilities
-            home_win_prob.append(round((1 / home_odds) * 100, 2))
-            draw_prob.append(round((1 / draw_odds_value) * 100, 2))
-            away_win_prob.append(round((1 / away_odds) * 100, 2))
         else:
             # If odds are missing, add None values
             home_win_odds.append(None)
@@ -96,5 +103,5 @@ df = pd.DataFrame({
 print(df)
 
 # Save the DataFrame as a CSV file
-df.to_csv('betmgm_odds_with_probabilities.csv', index=False)
-print("Data saved to 'betmgm_odds_with_probabilities.csv'")
+df.to_csv('betmgm_odds_with_normalized_probabilities.csv', index=False)
+print("Data saved to 'betmgm_odds_with_normalized_probabilities.csv'")

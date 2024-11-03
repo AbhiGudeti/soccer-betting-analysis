@@ -5,6 +5,29 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 import time
 
+TEAM_NAME_MAPPING = {
+    "Man United": "Manchester United",
+    "Chelsea": "Chelsea",
+    "Fulham": "Fulham",
+    "Brentford": "Brentford",
+    "West Ham": "West Ham United",
+    "Everton FC": "Everton",
+    "Wolves": "Wolverhampton Wanderers",
+    "Southampton FC": "Southampton",
+    "Crystal Palace": "Crystal Palace",
+    "Bournemouth": "AFC Bournemouth",
+    "Brighton": "Brighton & Hove Albion",
+    "Man City": "Manchester City",
+    "Liverpool": "Liverpool",
+    "Aston Villa": "Aston Villa",
+    "Tottenham": "Tottenham Hotspur",
+    "Ipswich Town": "Ipswich Town",
+    "Leicester": "Leicester City",
+    "Nottingham Forest": "Nottingham Forest",
+    "Newcastle": "Newcastle United",
+    "Arsenal": "Arsenal"
+}
+
 # Setup Selenium
 options = Options()
 options.headless = False  # Set to False to see the browser window
@@ -26,25 +49,6 @@ home_win_prob = []
 draw_prob = []
 away_win_prob = []
 
-
-# Function to convert American odds to decimal odds
-def american_to_decimal(odd):
-    if odd > 0:
-        return (odd / 100) + 1
-    else:
-        return (100 / abs(odd)) + 1
-
-def implied_probability(odd):
-    if odd > 0:
-        return odd / (odd + 100)
-    else:
-        return abs(odd) / (abs(odd) + 100)
-
-
-# Locate each game row
-game_rows = driver.find_elements(By.CSS_SELECTOR, 'ms-event.grid-event')
-print(f"Found {len(game_rows)} game rows")  # Debugging statement
-
 # Function to convert American odds to decimal odds
 def american_to_decimal(odd):
     if odd > 0:
@@ -59,18 +63,22 @@ def implied_probability(odd):
     else:
         return abs(odd) / (abs(odd) + 100)
 
+# Locate each game row
+game_rows = driver.find_elements(By.CSS_SELECTOR, 'ms-event.grid-event')
+print(f"Found {len(game_rows)} game rows")  # Debugging statement
+
 for row in game_rows:
     try:
         # Extract team names
         teams = row.find_elements(By.CSS_SELECTOR, 'div.participant-info .participant')
         if len(teams) >= 2:
-            game_name = f"{teams[0].text} vs {teams[1].text}"
-            games.append(game_name)
-            print(f"Game: {game_name}")  # Debugging
+            # Map team names using the dictionary
+            home_team = TEAM_NAME_MAPPING.get(teams[0].text, teams[0].text)
+            away_team = TEAM_NAME_MAPPING.get(teams[1].text, teams[1].text)
+            games.append(f"{home_team} vs {away_team}")
 
         # Extract odds
         odds = row.find_elements(By.CSS_SELECTOR, 'span.custom-odds-value-style')
-        print(f"Odds found: {[odd.text for odd in odds]}")  # Debugging
         if len(odds) >= 3:
             # Convert American odds to decimal and calculate implied probabilities
             home_odd = float(odds[0].text.replace('+', ''))
@@ -119,9 +127,6 @@ df = pd.DataFrame({
     'Draw Probability (%)': draw_prob,
     'Away Win Probability (%)': away_win_prob
 })
-
-# Print DataFrame content for debugging
-print(df)
 
 # Save the DataFrame as a CSV file
 df.to_csv('betmgm_odds_with_normalized_probabilities.csv', index=False)

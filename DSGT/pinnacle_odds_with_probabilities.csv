@@ -1,12 +1,21 @@
 Game,Home Win Odds (1),Draw Odds (X),Away Win Odds (2),Home Win Probability (%),Draw Probability (%),Away Win Probability (%)
-Arsenal (Match) vs 1,1.45,3.97,8.56,68.97,25.19,11.68
-Newcastle United (Match) vs Arsenal (Match),3.89,3.69,1.909,25.71,27.1,52.38
-Bournemouth (Match) vs Manchester City (Match),5.29,4.36,1.568,18.9,22.94,63.78
-Southampton (Match) vs Everton (Match),2.48,3.55,2.75,40.32,28.17,36.36
-Ipswich Town (Match) vs Leicester City (Match),2.11,3.62,3.31,47.39,27.62,30.21
-Nottingham Forest (Match) vs West Ham United (Match),2.18,3.52,3.26,45.87,28.41,30.67
-Liverpool (Match) vs Brighton and Hove Albion (Match),1.383,5.39,6.71,72.31,18.55,14.9
-Wolves (Match) vs Crystal Palace (Match),2.79,3.44,2.49,35.84,29.07,40.16
-Tottenham Hotspur (Match) vs Aston Villa (Match),1.925,4.19,3.39,51.95,23.87,29.5
-Manchester United (Match) vs Chelsea (Match),2.54,3.83,2.53,39.37,26.11,39.53
-Fulham (Match) vs Brentford (Match),2.02,3.65,3.53,49.5,27.4,28.33
+Nottingham Forest (Match) vs West Ham United (Match),2.14,3.53,3.54,46.73,28.33,28.25
+Liverpool (Match) vs Brighton and Hove Albion (Match),1.395,5.57,7.06,71.68,17.95,14.16
+Bournemouth (Match) vs Manchester City (Match),5.73,4.64,1.543,17.45,21.55,64.81
+Ipswich Town (Match) vs Leicester City (Match),2.26,3.67,3.14,44.25,27.25,31.85
+Newcastle United (Match) vs Arsenal (Match),3.8,3.72,1.99,26.32,26.88,50.25
+Southampton (Match) vs Everton (Match),2.65,3.46,2.72,37.74,28.9,36.76
+Wolves (Match) vs Crystal Palace (Match),2.57,3.36,2.88,38.91,29.76,34.72
+Tottenham Hotspur (Match) vs Aston Villa (Match),1.961,4.13,3.54,50.99,24.21,28.25
+Manchester United (Match) vs Chelsea (Match),2.59,3.79,2.6,38.61,26.39,38.46
+Fulham (Match) vs Brentford (Match),2.05,3.76,3.57,48.78,26.6,28.01
+Crystal Palace (Match) vs Fulham (Match),2.33,3.39,3.07,42.92,29.5,32.57
+Brentford (Match) vs Bournemouth (Match),2.3,3.74,2.88,43.48,26.74,34.72
+West Ham United (Match) vs Everton (Match),1.869,3.77,3.98,53.5,26.53,25.13
+Wolves (Match) vs Southampton (Match),1.952,3.77,3.65,51.23,26.53,27.4
+Brighton and Hove Albion (Match) vs Manchester City (Match),4.73,4.31,1.636,21.14,23.2,61.12
+Liverpool (Match) vs Aston Villa (Match),1.45,5.13,5.78,68.97,19.49,17.3
+Nottingham Forest (Match) vs Newcastle United (Match),2.8,3.28,2.58,35.71,30.49,38.76
+Manchester United (Match) vs Leicester City (Match),1.324,5.56,8.15,75.53,17.99,12.27
+Tottenham Hotspur (Match) vs Ipswich Town (Match),1.264,6.42,8.58,79.11,15.58,11.66
+Chelsea (Match) vs Arsenal (Match),2.95,3.58,2.32,33.9,27.93,43.1

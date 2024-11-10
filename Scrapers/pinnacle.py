@@ -18,7 +18,7 @@ url = "https://www.pinnacle.com/en/soccer/england-premier-league/matchups/#all"
 driver.get(url)
 
 # Wait for the game rows to load
-time.sleep(3)  # Basic wait for content to load; adjust as needed
+time.sleep(5)  # Basic wait for content to load; adjust as needed
 
 # Lists to store data
 games = []
@@ -30,17 +30,60 @@ draw_prob = []
 away_win_prob = []
 
 # Locate each game row
-game_rows = driver.find_elements(By.CSS_SELECTOR, 'div.row-u9F3b9WCM3.row-k9ktBvvTsJ')
+game_rows = WebDriverWait(driver, 10).until(
+    EC.presence_of_all_elements_located((By.CSS_SELECTOR, 'div.row-u9F3b9WCM3.row-k9ktBvvTsJ'))
+)
 print(f"Found {len(game_rows)} game rows")  # Debugging statement
 
 for row in game_rows:
     try:
         # Extract team names
         teams = row.find_elements(By.CSS_SELECTOR, 'div.gameInfoLabel-EDDYv5xEfd span')
+
+        TEAM_NAME_MAPPING = {
+            "Manchester United": "Manchester United",
+            "Chelsea": "Chelsea",
+            "Fulham": "Fulham",
+            "Brentford": "Brentford",
+            "West Ham United": "West Ham United",
+            "Everton": "Everton",
+            "Wolves": "Wolverhampton Wanderers",
+            "Southampton": "Southampton",
+            "Crystal Palace": "Crystal Palace",
+            "Bournemouth": "AFC Bournemouth",
+            "Brighton and Hove Albion": "Brighton & Hove Albion",
+            "Manchester City": "Manchester City",
+            "Liverpool": "Liverpool",
+            "Aston Villa": "Aston Villa",
+            "Tottenham Hotspur": "Tottenham Hotspur",
+            "Ipswich Town": "Ipswich Town",
+            "Leicester City": "Leicester City",
+            "Nottingham Forest": "Nottingham Forest",
+            "Newcastle United": "Newcastle United",
+            "Arsenal": "Arsenal"
+        }
+
         if len(teams) >= 2:
-            game_name = f"{teams[0].text} vs {teams[1].text}"
+            home_team = teams[0].text.replace("(Match)", "")
+            away_team = teams[1].text
+            if isinstance(away_team, str):
+                away_team = teams[1].text.replace("(Match)", "")
+            elif isinstance(int(away_team), int):
+                away_team = teams[2].text.replace("(Match)", "")
+
+            def normalize_team_name(team_name):
+                """Normalize team names using the TEAM_NAME_MAPPING dictionary."""
+                # Strip any extra whitespace and use the dictionary to normalize
+                normalized_name = team_name.strip()
+                return TEAM_NAME_MAPPING.get(normalized_name, normalized_name)
+
+            team1 = normalize_team_name(home_team.strip())
+            team2 = normalize_team_name(away_team.strip())
+
+            game_name = f"{team1} vs {team2}"
             games.append(game_name)
             print(f"Game: {game_name}")  # For debugging
+
 
         # Extract odds
         odds = row.find_elements(By.CSS_SELECTOR, 'span.price-r5BU0ynJha')
@@ -97,6 +140,8 @@ df = pd.DataFrame({
     'Draw Probability (%)': draw_prob,
     'Away Win Probability (%)': away_win_prob
 })
+
+df.sort_values(by='Game', inplace=True)
 
 # Print DataFrame content for debugging
 print(df)

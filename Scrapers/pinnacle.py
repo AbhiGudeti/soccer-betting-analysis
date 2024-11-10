@@ -30,7 +30,7 @@ draw_prob = []
 away_win_prob = []
 
 # Locate each game row
-game_rows = WebDriverWait(driver, 10).until(
+game_rows = WebDriverWait(driver, 100).until(
     EC.presence_of_all_elements_located((By.CSS_SELECTOR, 'div.row-u9F3b9WCM3.row-k9ktBvvTsJ'))
 )
 print(f"Found {len(game_rows)} game rows")  # Debugging statement
@@ -66,10 +66,10 @@ for row in game_rows:
         if len(teams) >= 2:
             home_team = teams[0].text.replace("(Match)", "")
             away_team = teams[1].text
-            if isinstance(away_team, str):
-                away_team = teams[1].text.replace("(Match)", "")
-            elif isinstance(int(away_team), int):
+            if away_team in ("0", "1", "2", "3", "4", "5", "6", "7", "8", "9"):
                 away_team = teams[2].text.replace("(Match)", "")
+            else:
+                away_team = teams[1].text.replace("(Match)", "")
 
             def normalize_team_name(team_name):
                 """Normalize team names using the TEAM_NAME_MAPPING dictionary."""

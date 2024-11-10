@@ -1,7 +1,6 @@
 import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 import time
 
@@ -30,7 +29,6 @@ TEAM_NAME_MAPPING = {
 
 # Setup Selenium
 options = Options()
-options.headless = False  # Set to False to see the browser window
 driver = webdriver.Chrome(options=options)
 
 # URL of the page
@@ -67,7 +65,8 @@ def implied_probability(odd):
 game_rows = driver.find_elements(By.CSS_SELECTOR, 'ms-event.grid-event')
 print(f"Found {len(game_rows)} game rows")  # Debugging statement
 
-for row in game_rows:
+# Limit the data collection to the first 10 rows
+for i, row in enumerate(game_rows):
     try:
         # Extract team names
         teams = row.find_elements(By.CSS_SELECTOR, 'div.participant-info .participant')
@@ -129,5 +128,6 @@ df = pd.DataFrame({
 })
 
 # Save the DataFrame as a CSV file
+df.sort_values(by='Game', ascending=True, inplace=True)
 df.to_csv('betmgm_odds_with_normalized_probabilities.csv', index=False)
 print("Data saved to 'betmgm_odds_with_normalized_probabilities.csv'")

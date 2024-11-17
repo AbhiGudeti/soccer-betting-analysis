@@ -48,19 +48,16 @@ TEAM_NAME_MAPPING = {
     "Arsenal": "Arsenal"
 }
 
-
 def normalize_team_name(team_name):
     """Normalize team names using the TEAM_NAME_MAPPING dictionary."""
     normalized_name = team_name.strip()
     return TEAM_NAME_MAPPING.get(normalized_name, normalized_name)
-
 
 def clean_odds(odds_text):
     # Remove any non-numeric characters (like commas or whitespace)
     cleaned_text = ''.join(
         filter(lambda x: x.isdigit() or x == '-' or x == '+', odds_text))
     return int(cleaned_text) if cleaned_text else None
-
 
 def american_odds_to_probability(odds):
     """Convert American odds to implied probability."""
@@ -71,12 +68,10 @@ def american_odds_to_probability(odds):
         probability = -odds / (-odds + 100)
     return probability * 100  # Return as percentage
 
-
 def normalize_probabilities(probabilities):
     """Normalize a list of probabilities to sum to 100%."""
     total_probability = sum(probabilities)
     return [p / total_probability * 100 for p in probabilities]
-
 
 def scrape_draftkings():
     # DraftKings Premier League URL
@@ -168,9 +163,8 @@ def scrape_draftkings():
     df.drop_duplicates(inplace=True)
     df.sort_values(by=['Home Team'], inplace=True)
     df.reset_index(drop=True, inplace=True)
-
+    print(df)
     return df
-
 
 def scrape_pinnacle():
     # Setup Selenium
@@ -305,7 +299,6 @@ def scrape_pinnacle():
     # Return the DataFrame
     return df
 
-
 def scrape_betmgm():
     # Setup Selenium
     options = Options()
@@ -314,7 +307,7 @@ def scrape_betmgm():
         ChromeDriverManager().install()), options=options)
 
     # URL of the page
-    url = "https://sports.nj.betmgm.com/en/sports/soccer-4"
+    url = "https://sports.nj.betmgm.com/en/sports/soccer-4/betting/england-14?tab=matches"
     driver.get(url)
 
     # Wait for content to load
@@ -426,8 +419,9 @@ def scrape_betmgm():
     df.sort_values(by=['Home Team'], inplace=True)
     df.reset_index(drop=True, inplace=True)
 
-    return df
+    print(df)
 
+    return df
 
 def main():
     # Get dataframes from each source
@@ -436,8 +430,8 @@ def main():
     df_betmgm = scrape_betmgm()
 
     # Check if DataFrames are not empty
-    if df_draftkings.empty and df_pinnacle.empty and df_betmgm.empty:
-        print("No data available from any source.")
+    if df_draftkings.empty or df_pinnacle.empty or df_betmgm.empty:
+        print("One or more data sources did not return any data. Exiting.")
         return
 
     # Rename columns to include source
@@ -468,16 +462,68 @@ def main():
         'Away Win Probability': 'Away Win Probability_betmgm'
     }, inplace=True)
 
-    # Merge dataframes on 'Home Team' and 'Away Team'
-    df_merged = pd.merge(df_draftkings, df_pinnacle, on=[
-                         'Home Team', 'Away Team'], how='outer')
-    df_merged = pd.merge(df_merged, df_betmgm, on=[
-                         'Home Team', 'Away Team'], how='outer')
+    # Merge dataframes on 'Home Team' and 'Away Team' using inner joins
+    df_merged = pd.merge(df_draftkings, df_pinnacle, on=['Home Team', 'Away Team'], how='inner')
+    df_merged = pd.merge(df_merged, df_betmgm, on=['Home Team', 'Away Team'], how='inner')
+
+    # Check if the merged DataFrame is empty
+    if df_merged.empty:
+        print("No common games found across all three websites.")
+        return
+
+    # Ensure that odds and probabilities columns are numeric
+    odds_columns = [
+        'Home Win Odds_draftkings', 'Draw Odds_draftkings', 'Away Win Odds_draftkings',
+        'Home Win Odds_pinnacle', 'Draw Odds_pinnacle', 'Away Win Odds_pinnacle',
+        'Home Win Odds_betmgm', 'Draw Odds_betmgm', 'Away Win Odds_betmgm'
+    ]
+
+    probability_columns = [
+        'Home Win Probability_draftkings', 'Draw Probability_draftkings', 'Away Win Probability_draftkings',
+        'Home Win Probability_pinnacle', 'Draw Probability_pinnacle', 'Away Win Probability_pinnacle',
+        'Home Win Probability_betmgm', 'Draw Probability_betmgm', 'Away Win Probability_betmgm'
+    ]
+
+    # Convert columns to numeric, coercing errors to NaN
+    for col in odds_columns + probability_columns:
+        df_merged[col] = pd.to_numeric(df_merged[col], errors='coerce')
+
+    # Calculate average odds
+    df_merged['Average Home Win Odds'] = df_merged[
+        ['Home Win Odds_draftkings', 'Home Win Odds_pinnacle', 'Home Win Odds_betmgm']
+    ].mean(axis=1, skipna=True)
+
+    df_merged['Average Draw Odds'] = df_merged[
+        ['Draw Odds_draftkings', 'Draw Odds_pinnacle', 'Draw Odds_betmgm']
+    ].mean(axis=1, skipna=True)
+
+    df_merged['Average Away Win Odds'] = df_merged[
+        ['Away Win Odds_draftkings', 'Away Win Odds_pinnacle', 'Away Win Odds_betmgm']
+    ].mean(axis=1, skipna=True)
+
+    # Calculate average probabilities
+    df_merged['Average Home Win Probability'] = df_merged[
+        ['Home Win Probability_draftkings', 'Home Win Probability_pinnacle', 'Home Win Probability_betmgm']
+    ].mean(axis=1, skipna=True)
+
+    df_merged['Average Draw Probability'] = df_merged[
+        ['Draw Probability_draftkings', 'Draw Probability_pinnacle', 'Draw Probability_betmgm']
+    ].mean(axis=1, skipna=True)
+
+    df_merged['Average Away Win Probability'] = df_merged[
+        ['Away Win Probability_draftkings', 'Away Win Probability_pinnacle', 'Away Win Probability_betmgm']
+    ].mean(axis=1, skipna=True)
+
+    # Round all numerical columns to two decimal places
+    numeric_columns = odds_columns + probability_columns + [
+        'Average Home Win Odds', 'Average Draw Odds', 'Average Away Win Odds',
+        'Average Home Win Probability', 'Average Draw Probability', 'Average Away Win Probability'
+    ]
+    df_merged[numeric_columns] = df_merged[numeric_columns].round(2)
 
     # Save the combined dataframe to CSV
     df_merged.to_csv('combined_betting_data.csv', index=False)
     print("Data saved to 'combined_betting_data.csv'")
-
 
 if __name__ == "__main__":
     main()

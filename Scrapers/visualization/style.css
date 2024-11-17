@@ -1,0 +1,38 @@
+/* style.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #2d2d2d;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: #ffffff;
+    margin: 20px;
+    text-align: center;
+}
+
+table {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: #333333;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #444444;
+    text-align: left;
+}
+
+th {
+    background-color: #444444;
+    text-transform: uppercase;
+}
+
+.highlight {
+    background-color: #6600cc;
+    color: #ffffff;
+    font-weight: bold;
+}

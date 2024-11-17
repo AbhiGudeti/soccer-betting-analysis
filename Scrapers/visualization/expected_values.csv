@@ -1,0 +1,91 @@
+Match,Bookmaker,Outcome,Probability (%),Odds (Decimal),Expected Value
+AFC Bournemouth vs Brighton & Hove Albion,draftkings,Home,39.68,2.35,0.33
+AFC Bournemouth vs Brighton & Hove Albion,draftkings,Draw,27.03,3.45,0.2
+AFC Bournemouth vs Brighton & Hove Albion,draftkings,Away,33.3,2.8,0.27
+AFC Bournemouth vs Brighton & Hove Albion,pinnacle,Home,39.52,2.45,0.36
+AFC Bournemouth vs Brighton & Hove Albion,pinnacle,Draw,26.97,3.59,0.24
+AFC Bournemouth vs Brighton & Hove Albion,pinnacle,Away,33.51,2.89,0.3
+AFC Bournemouth vs Brighton & Hove Albion,betmgm,Home,33.54,1.02,-0.32
+AFC Bournemouth vs Brighton & Hove Albion,betmgm,Draw,33.09,1.04,-0.32
+AFC Bournemouth vs Brighton & Hove Albion,betmgm,Away,33.38,1.03,-0.32
+Arsenal vs Nottingham Forest,draftkings,Home,44.87,3.95,1.22
+Arsenal vs Nottingham Forest,draftkings,Draw,35.44,5.0,1.13
+Arsenal vs Nottingham Forest,draftkings,Away,19.69,9.0,0.97
+Arsenal vs Nottingham Forest,pinnacle,Home,71.25,1.35,0.67
+Arsenal vs Nottingham Forest,pinnacle,Draw,18.49,5.21,0.15
+Arsenal vs Nottingham Forest,pinnacle,Away,10.26,9.39,0.07
+Arsenal vs Nottingham Forest,betmgm,Home,34.54,1.01,-0.31
+Arsenal vs Nottingham Forest,betmgm,Draw,33.34,1.05,-0.32
+Arsenal vs Nottingham Forest,betmgm,Away,32.12,1.09,-0.33
+Aston Villa vs Crystal Palace,draftkings,Home,45.68,2.7,0.69
+Aston Villa vs Crystal Palace,draftkings,Draw,30.83,4.0,0.54
+Aston Villa vs Crystal Palace,draftkings,Away,23.49,5.25,0.47
+Aston Villa vs Crystal Palace,pinnacle,Home,59.65,1.62,0.56
+Aston Villa vs Crystal Palace,pinnacle,Draw,23.13,4.17,0.2
+Aston Villa vs Crystal Palace,pinnacle,Away,17.22,5.6,0.14
+Aston Villa vs Crystal Palace,betmgm,Home,33.95,1.02,-0.31
+Aston Villa vs Crystal Palace,betmgm,Draw,33.18,1.04,-0.32
+Aston Villa vs Crystal Palace,betmgm,Away,32.87,1.05,-0.33
+Aston Villa vs Crystal Palace,draftkings,Home,45.68,2.7,0.69
+Aston Villa vs Crystal Palace,draftkings,Draw,30.83,4.0,0.54
+Aston Villa vs Crystal Palace,draftkings,Away,23.49,5.25,0.47
+Aston Villa vs Crystal Palace,pinnacle,Home,59.65,1.62,0.56
+Aston Villa vs Crystal Palace,pinnacle,Draw,23.13,4.17,0.2
+Aston Villa vs Crystal Palace,pinnacle,Away,17.22,5.6,0.14
+Aston Villa vs Crystal Palace,betmgm,Home,34.11,1.01,-0.31
+Aston Villa vs Crystal Palace,betmgm,Draw,33.1,1.04,-0.32
+Aston Villa vs Crystal Palace,betmgm,Away,32.79,1.06,-0.32
+Fulham vs Wolverhampton Wanderers,draftkings,Home,46.49,2.5,0.63
+Fulham vs Wolverhampton Wanderers,draftkings,Draw,29.8,3.9,0.46
+Fulham vs Wolverhampton Wanderers,draftkings,Away,23.72,4.9,0.4
+Fulham vs Wolverhampton Wanderers,pinnacle,Home,57.12,1.69,0.54
+Fulham vs Wolverhampton Wanderers,pinnacle,Draw,24.12,4.0,0.21
+Fulham vs Wolverhampton Wanderers,pinnacle,Away,18.77,5.14,0.15
+Fulham vs Wolverhampton Wanderers,betmgm,Home,33.89,1.02,-0.32
+Fulham vs Wolverhampton Wanderers,betmgm,Draw,33.17,1.04,-0.32
+Fulham vs Wolverhampton Wanderers,betmgm,Away,32.95,1.05,-0.32
+Ipswich Town vs Manchester United,draftkings,Home,23.92,5.0,0.44
+Ipswich Town vs Manchester United,draftkings,Draw,29.17,4.1,0.49
+Ipswich Town vs Manchester United,draftkings,Away,46.91,2.55,0.67
+Ipswich Town vs Manchester United,pinnacle,Home,18.39,5.21,0.14
+Ipswich Town vs Manchester United,pinnacle,Draw,22.76,4.21,0.19
+Ipswich Town vs Manchester United,pinnacle,Away,58.85,1.63,0.55
+Ipswich Town vs Manchester United,betmgm,Home,32.96,1.05,-0.32
+Ipswich Town vs Manchester United,betmgm,Draw,33.12,1.04,-0.32
+Ipswich Town vs Manchester United,betmgm,Away,33.91,1.02,-0.32
+Leicester City vs Chelsea,draftkings,Home,23.76,5.5,0.54
+Leicester City vs Chelsea,draftkings,Draw,30.39,4.3,0.61
+Leicester City vs Chelsea,draftkings,Away,45.85,2.85,0.77
+Leicester City vs Chelsea,pinnacle,Home,16.1,5.98,0.12
+Leicester City vs Chelsea,pinnacle,Draw,21.74,4.43,0.18
+Leicester City vs Chelsea,pinnacle,Away,62.16,1.55,0.59
+Leicester City vs Chelsea,betmgm,Home,32.9,1.05,-0.33
+Leicester City vs Chelsea,betmgm,Draw,33.09,1.04,-0.32
+Leicester City vs Chelsea,betmgm,Away,34.01,1.02,-0.31
+Manchester City vs Tottenham Hotspur,draftkings,Home,45.92,2.95,0.81
+Manchester City vs Tottenham Hotspur,draftkings,Draw,29.45,4.6,0.65
+Manchester City vs Tottenham Hotspur,draftkings,Away,24.63,5.5,0.6
+Manchester City vs Tottenham Hotspur,pinnacle,Home,62.17,1.54,0.58
+Manchester City vs Tottenham Hotspur,pinnacle,Draw,20.68,4.63,0.16
+Manchester City vs Tottenham Hotspur,pinnacle,Away,17.16,5.58,0.13
+Manchester City vs Tottenham Hotspur,betmgm,Home,34.07,1.02,-0.31
+Manchester City vs Tottenham Hotspur,betmgm,Draw,33.07,1.05,-0.32
+Manchester City vs Tottenham Hotspur,betmgm,Away,32.86,1.05,-0.33
+Newcastle United vs West Ham United,draftkings,Home,45.06,3.0,0.8
+Newcastle United vs West Ham United,draftkings,Draw,31.44,4.3,0.67
+Newcastle United vs West Ham United,draftkings,Away,23.51,5.75,0.59
+Newcastle United vs West Ham United,pinnacle,Home,63.01,1.52,0.59
+Newcastle United vs West Ham United,pinnacle,Draw,21.67,4.42,0.17
+Newcastle United vs West Ham United,pinnacle,Away,15.32,6.25,0.11
+Newcastle United vs West Ham United,betmgm,Home,34.06,1.02,-0.31
+Newcastle United vs West Ham United,betmgm,Draw,33.15,1.04,-0.32
+Newcastle United vs West Ham United,betmgm,Away,32.79,1.06,-0.32
+Southampton vs Liverpool,draftkings,Home,21.31,8.5,1.02
+Southampton vs Liverpool,draftkings,Draw,34.5,5.25,1.16
+Southampton vs Liverpool,draftkings,Away,44.18,4.1,1.25
+Southampton vs Liverpool,pinnacle,Home,10.06,9.51,0.06
+Southampton vs Liverpool,pinnacle,Draw,17.82,5.37,0.14
+Southampton vs Liverpool,pinnacle,Away,72.12,1.33,0.68
+Southampton vs Liverpool,betmgm,Home,32.32,1.08,-0.33
+Southampton vs Liverpool,betmgm,Draw,33.16,1.06,-0.32
+Southampton vs Liverpool,betmgm,Away,34.52,1.01,-0.31
